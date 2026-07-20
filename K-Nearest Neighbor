@@ -1,0 +1,90 @@
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
+
+# create data
+data = {
+    "Age": [18, 22, 25, 28, 30, 35, 40, 45],
+    "MonthlyIncome": [1200, 1800, 2500, 3200, 3500, 4200, 5000, 5500],
+    "Purchased": [0, 0, 1, 1, 1, 1, 1, 1]
+}
+
+dataframe = pd.DataFrame(data)
+
+# create data
+data = {
+    "Age": [18, 22, 25, 28, 30, 35, 40, 45],
+    "MonthlyIncome": [1200, 1800, 2500, 3200, 3500, 4200, 5000, 5500],
+    "Purchased": [0, 0, 1, 1, 1, 1, 1, 1]
+}
+
+dataframe = pd.DataFrame(data)
+
+dataframe.to_csv("customers.csv", index=False)
+
+dataframe = pd.read_csv("customers.csv")
+
+# features and target
+X = dataframe[["Age", "MonthlyIncome"]]
+Y = dataframe["Purchased"]
+
+#split data
+X_train, X_test, Y_train, Y_test = train_test_split(
+    X, Y, test_size=0.2, random_state=42
+)
+
+# KNN model (k = 3 neighbors)
+model = KNeighborsClassifier(n_neighbors=3)
+
+model.fit(X_train, Y_train)
+
+predictions = model.predict(X_test)
+
+# print results
+print("Test customers:")
+print(X_test.values)
+
+print("Predictions:")
+print(predictions)
+
+print("Actual:")
+print(Y_test.values)
+
+# accuracy
+accuracy = accuracy_score(Y_test, predictions)
+print("Accuracy:", accuracy)
+
+dataframe.to_csv("customers.csv", index=False)
+
+dataframe = pd.read_csv("customers.csv")
+
+# features and target
+X = dataframe[["Age", "MonthlyIncome"]]
+Y = dataframe["Purchased"]
+
+#split data
+X_train, X_test, Y_train, Y_test = train_test_split(
+    X, Y, test_size=0.2, random_state=42
+)
+
+# KNN model (k = 3 neighbors)
+model = KNeighborsClassifier(n_neighbors=3)
+
+model.fit(X_train, Y_train)
+
+predictions = model.predict(X_test)
+
+# print results
+print("Test customers:")
+print(X_test.values)
+
+print("Predictions:")
+print(predictions)
+
+print("Actual:")
+print(Y_test.values)
+
+# accuracy
+accuracy = accuracy_score(Y_test, predictions)
+print("Accuracy:", accuracy)
